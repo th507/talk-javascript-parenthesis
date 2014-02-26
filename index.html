@@ -50,6 +50,7 @@
 
         <section>
             <h2>Questions</h2>
+            <br>
             <code>[] + [] = ?<br>[] + {} = ?
             </code>
         </section>
@@ -154,7 +155,7 @@ console.log(a, b);</code></pre>
 
         <section>
             <h2>Labelled Statement</h2>
-            <p>A Statement may be prefixed by a label.</p>
+            <p>A statement may be prefixed by a label.</p>
             <p>Labelled statements are only used in conjunction with labelled break and continue statements.</p>
             <pre><code class="javascript">loop: for (var i = 0; i < 1000; i++) {
     if (i === 233) break loop;
@@ -163,6 +164,14 @@ console.log(a, b);</code></pre>
 console.log(i);
 </code></pre>
         </section>
+
+        <section>
+            <h2>Labelled Statement</h2>
+            <p>Almost <crimson>any</crimson> statement can be prefixed by a label.</p>
+            <pre><code class="javascript">pointless: var a = 1;</code></pre>
+            <p>Label doesn't do anything in this case.</p>
+        </section>
+
 
         <section>
             <h2>revealing the trick</h2>

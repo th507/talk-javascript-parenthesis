@@ -1,0 +1,42 @@
+.reveal section a:not(.image) {
+    color: #333;
+}
+.first-slide h1 {
+    font-size: 200px;
+    margin-bottom: 100px;
+}
+.first-slide p {
+    padding: 20px 0;
+}
+.first-slide small {
+    letter-spacing: 0.005em;
+}
+
+.reveal code {
+    word-wrap: break-word;      /* IE 5.5-7 */
+    white-space: -moz-pre-wrap; /* Firefox 1.0-2.0 */
+    white-space: pre-wrap;      /* current browsers */
+
+    display: block;
+    font-family: Menlo, monospace;
+    line-height: 1.5;
+}
+.reveal code.long {
+    width: 1000px;
+}
+
+crimson, .reveal [crimson], .reveal .crimson {
+    color: crimson;
+}
+
+.reveal pre {
+    box-shadow: none;
+}
+.reval a {
+    color: black;
+}
+
+.reveal section[data-background] h2 {
+    color: white;
+    text-shadow: 0 0 5px rgba(51,51,51,.4);
+}

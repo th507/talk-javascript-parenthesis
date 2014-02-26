@@ -232,7 +232,7 @@ pointless: var a = 1;
 
 
         <section>
-            <h2>Revealing the trick</h2>
+            <h2>So we have...</h2>
             <pre><code class="javascript">
 {} + []
 // processing code block
@@ -248,11 +248,11 @@ pointless: var a = 1;
         </section>
         
         <section>
-            <h2>Breaking down the trick</h2>
+            <h2>Revealing the trick</h2>
             <pre><code class="javascript">
 {valueOf: function valueOf() { return 2}} + {valueOf: function valueOf() { return 2}}
             </code></pre>
-            <p>The first part is treated as a code block with a label and a statement inside.</p>
+            <p>The first part is treated as a <crimson>code block</crimson> with a label and a statement inside.</p>
             <pre><code class="javascript">
 // This first part
 {valueOf: function valueOf() { return 2;}}
@@ -264,7 +264,7 @@ pointless: var a = 1;
         </section>
 
         <section>
-            <h2>Breaking down the trick</h2>
+            <h2>Revealing the trick</h2>
             <pre><code class="javascript">
 {valueOf: function valueOf() { return 2}} + {valueOf: function valueOf() { return 2}}
             </code></pre>

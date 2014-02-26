@@ -51,8 +51,7 @@
         <section>
             <h2>Questions</h2>
             <br>
-            <code>[] + [] = ?<br>[] + {} = ?
-            </code>
+            <code>[] + [] = ?<br>[] + {} = ?</code>
         </section>
 
         <section>
@@ -73,43 +72,74 @@
 
         <section>
             <code>[] + {}
-= [].valueOf() + {}.valueOf()
-</code>
+= [].valueOf() + {}.valueOf()</code>
         </section>
 
         <section>
             <h3>Primitive value</h3>
             <small><code>Number, String, Boolean, undefined, null</code></small>
             <p>typecast operands before evaluation</p>
-            <code>!!obj</code>
-        </section>
-
-        <section>
-            <pre><code>var arr = [];
-arr.valueOf() === arr;</code></pre>
-        </section>
-
-        <section>
-            <pre><code class="javascript">[] + {}
-= [].valueOf() + {}.valueOf()
-// typecast
-= [].toString() + {}.toString()
-= "" + "[object Object]"
-= "[object Object]"
-</code></pre>
-        </section>
-
-        <section>
-            <h2>ponder this</h2>
-            <pre><code class="javascript">[] + {valueOf: function valueOf() { return 2;}}</code></pre>
-        </section>
-
-        <section>
-            <h2>ponder this</h2>
             <pre><code class="javascript">
-{valueOf: function valueOf() { return 2;}} + {valueOf: function valueOf() { return 2;}}
+// typecast obj to boolean
+!!obj
             </code></pre>
         </section>
+
+        <section>
+            <h3>Array's primitive value</h3>
+            <pre><code class="javascript">
+var arr = [];
+// still not a primitive value
+arr.valueOf() === arr;
+            </code></pre>
+        </section>
+
+        <section>
+            <pre><code class="javascript">
+[] + {}
+// trying to get primitive value by valueOf
+= ([]).valueOf() + ({}).valueOf()
+// previous attempt fails, tring typecast instead
+= ([]).toString() + ({}).toString()
+= "" + "[object Object]"
+= "[object Object]"
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>Ponder this</h2>
+            <pre><code class="javascript">
+[] + {valueOf: function valueOf() { return 2}}
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>So far so good</h2>
+            <pre><code class="javascript">
+[] + {valueOf: function valueOf() { return 2}}
+= "" + {valueOf: function valueOf() { return 2}}.valueOf()
+= "" + 2
+= "2"
+            </code></pre>
+        </section>
+
+
+        <section>
+            <h2>Ponder this</h2>
+            <pre><code class="javascript">
+{valueOf: function valueOf() { return 2}} + {valueOf: function valueOf() { return 2}}
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>What?</h2>
+            <pre><code class="javascript">
+{valueOf: function valueOf() { return 2}} + {valueOf: function valueOf() { return 2}}
+
+= 2
+            </code></pre>
+        </section>
+
 
         <section data-background="#fff">
             <img src="img/What-Went-Wrong.jpg" alt="What weng wrong?">
@@ -121,61 +151,90 @@ arr.valueOf() === arr;</code></pre>
         </section>
 
         <section>
-            <h2>code block</h2>
-            <p><code>{ StatementList }</code>
-Return the result of evaluating StatementList.</p>
-<pre><code class="javascript">var a = 1, b = 2;
+            <h2>Code block</h2>
+            <p>
+                <code>{ StatementList }</code>
+                Return the result of evaluating StatementList.
+            </p>
+                <pre><code class="javascript">
+var a = 1, b = 2;
 {a = 2; b = 3};
-console.log(a, b);</code></pre>
+console.log(a, b);
+            </code></pre>
         </section>
 
         <section>
-            <h2>code block is everywhere</h2>
-            <pre><code class="javascript">// this is OK
+            <h2>Code block is everywhere</h2>
+            <pre><code class="javascript">
+// this is OK
 [].toString();
 // this will throw an error
 {}.hasOwnProperty();
 
 // this is OK, Wait, what?
 {}hasOwnProperty();
-</code></pre>
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>Code block is everywhere</h2>
+            <p>The leading {} is treated as a code block in browsers.</p>
+            <pre><code class="javascript">
+// this is OK
+{}.hasOwnProperty();
+// equals to
+.hasOwnProperty();
+            </code></pre>
+            <br>
+            <pre><code class="javascript">
+{}hasOwnProperty();
+// equals to
+hasOwnProperty();
+
+// Chrome has an window.hasOwnProperty :)
+            </code></pre>
         </section>
 
         <section>
             <h2>Be careful with<br>code block</h2>
-            <pre><code class="javascript">// There are many ways to fool the browser
+            <pre><code class="javascript">
+// There are many ways to fool the browser
 // so that {} won't be treated as a block
 // wrap it in ()
 ({}).hasOwnProperty();
 // add something in front of {}
 "",{}.hasProperty();
-</code></pre>
-        <p>Compression tools "fixes" this for us.</p>
+            </code></pre>
+            <p>Compression tools "fixes" this for us.</p>
         </section>
 
         <section>
             <h2>Labelled Statement</h2>
             <p>A statement may be prefixed by a label.</p>
             <p>Labelled statements are only used in conjunction with labelled break and continue statements.</p>
-            <pre><code class="javascript">loop: for (var i = 0; i < 1000; i++) {
+            <pre><code class="javascript">
+loop: for (var i = 0; i < 1000; i++) {
     if (i === 233) break loop;
 }
 // i = 233
 console.log(i);
-</code></pre>
+            </code></pre>
         </section>
 
         <section>
             <h2>Labelled Statement</h2>
             <p>Almost <crimson>any</crimson> statement can be prefixed by a label.</p>
-            <pre><code class="javascript">pointless: var a = 1;</code></pre>
+            <pre><code class="javascript">
+pointless: var a = 1;
+            </code></pre>
             <p>Label doesn't do anything in this case.</p>
         </section>
 
 
         <section>
-            <h2>revealing the trick</h2>
-            <pre><code class="javascript">{} + []
+            <h2>Revealing the trick</h2>
+            <pre><code class="javascript">
+{} + []
 // processing code block
 = +[]
 // trying to get primitive value
@@ -183,27 +242,45 @@ console.log(i);
 = + [].toString()
 = + ""
 // typecast
+= Number("")
 = 0
             </code></pre>        
         </section>
         
         <section>
-            <h2>...and the other trick</h2>
+            <h2>Breaking down the trick</h2>
             <pre><code class="javascript">
-{valueOf: function valueOf() { return 2;}} + {valueOf: function valueOf() { return 2;}}
+{valueOf: function valueOf() { return 2}} + {valueOf: function valueOf() { return 2}}
             </code></pre>
-            <p>The first part is treated as a code block, which does not return anything.</p>
+            <p>The first part is treated as a code block with a label and a statement inside.</p>
+            <pre><code class="javascript">
+// This first part
+{valueOf: function valueOf() { return 2;}}
+// { label: statement }
+// label: "valueOf"
+// statement: function valueOf() { return 2;}
+            </code></pre>
+            <p>It doesn't return anything.</p>
+        </section>
+
+        <section>
+            <h2>Breaking down the trick</h2>
+            <pre><code class="javascript">
+{valueOf: function valueOf() { return 2}} + {valueOf: function valueOf() { return 2}}
+            </code></pre>
+            <p>The second part is an object with a customized <code>valueOf</code> method.</p>
             <p>The answer is +2 = <crimson>2</crimson></p>
         </section>
+
 
         <section>
             <h2>Similarly...</h2>
             <pre><code class="javascript">
-                {} + [] = +[] = 0 // in browser, not Node.js
-                {} + {} = +{} = NaN
-                {} + new Date = 1393349722245
-                [] + new Date = "Wed Feb 26 2014 01:35:28 GMT+0800 (KRAT)"
-                [] + + new Date = 1393349722245
+{} + [] = +[] = 0 // in browser, not Node.js
+{} + {} = +{} = NaN
+{} + new Date = 1393349722245
+[] + new Date = "Wed Feb 26 2014 01:35:28 GMT+0800 (KRAT)"
+[] + + new Date = 1393349722245
             </code></pre>
         </section>
 
@@ -231,7 +308,7 @@ console.log(i);
     // Full list of configuration options available here:
     // https://github.com/hakimel/reveal.js#configuration
     Reveal.initialize({
-        controls: false,
+        controls: true,
         progress: true,
         history: true,
         center: true,

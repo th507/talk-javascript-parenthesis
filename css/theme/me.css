@@ -5,6 +5,9 @@
     font-size: 200px;
     margin-bottom: 100px;
 }
+.first-slide h3, .first-slide h6 {
+    text-transform: none;
+}
 .first-slide p {
     padding: 20px 0;
 }

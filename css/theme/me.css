@@ -20,7 +20,6 @@
     white-space: -moz-pre-wrap; /* Firefox 1.0-2.0 */
     white-space: pre-wrap;      /* current browsers */
 
-    display: block;
     font-family: Menlo, monospace;
     line-height: 1.5;
 }
